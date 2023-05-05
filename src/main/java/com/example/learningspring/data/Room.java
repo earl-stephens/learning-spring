@@ -10,6 +10,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="ROOM")
 public class Room {
+	//This is the DTO
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ROOM_ID")
