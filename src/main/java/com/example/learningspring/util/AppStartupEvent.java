@@ -15,9 +15,16 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
 	//use this to make sure the application and db are set up
 	//before querying the db
 
-	private ReservationService reservationService;
-	private DateUtils dateUtils;
+	private final ReservationService reservationService;
+	private final DateUtils dateUtils;
 	
+	
+	
+	public AppStartupEvent(ReservationService reservationService, DateUtils dateUtils) {
+		this.reservationService = reservationService;
+		this.dateUtils = dateUtils;
+	}
+
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		Date date = this.dateUtils.createDateFromDateString("2022-01-01");
