@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.example.learningspring.data.Guest;
 import com.example.learningspring.data.GuestRepository;
 import com.example.learningspring.data.Reservation;
@@ -14,10 +16,17 @@ import com.example.learningspring.data.ReservationRepository;
 import com.example.learningspring.data.Room;
 import com.example.learningspring.data.RoomRepository;
 
+@Service
 public class ReservationService {
-	private RoomRepository roomRepository;
-	private GuestRepository guestRepository;
-	private ReservationRepository reservationRepository;
+	private final RoomRepository roomRepository;
+	private final GuestRepository guestRepository;
+	private final ReservationRepository reservationRepository;
+	
+	public ReservationService(RoomRepository roomRepository, GuestRepository guestRepository, ReservationRepository reservationRepository) {
+		this.roomRepository = roomRepository;
+		this.guestRepository = guestRepository;
+		this.reservationRepository = reservationRepository;
+	}
 	
 	public List<RoomReservation> getRoomReservationForDate(Date date) {
 		Iterable<Room> rooms = this.roomRepository.findAll();
