@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.learningspring.business.GuestService;
 import com.example.learningspring.business.ReservationService;
 import com.example.learningspring.business.RoomReservation;
+import com.example.learningspring.business.RoomService;
 import com.example.learningspring.data.Guest;
+import com.example.learningspring.data.Room;
 import com.example.learningspring.util.DateUtils;
 
 @RestController
@@ -21,12 +23,17 @@ public class WebserviceController {
 	private final DateUtils dateUtils;
 	private final ReservationService reservationService;
 	private final GuestService guestService;
+	private final RoomService roomService;
 	
-	public WebserviceController(DateUtils dateUtils, ReservationService reservationService, GuestService guestService) {
+	public WebserviceController(DateUtils dateUtils, 
+			ReservationService reservationService, 
+			GuestService guestService, 
+			RoomService roomService) {
 		super();
 		this.dateUtils = dateUtils;
 		this.reservationService = reservationService;
 		this.guestService = guestService;
+		this.roomService = roomService;
 	}
 	
 	@RequestMapping(path = "/reservations", method=RequestMethod.GET)
@@ -39,5 +46,10 @@ public class WebserviceController {
 	@RequestMapping(path="/guests", method=RequestMethod.GET)
 	public List<Guest> getGuests() {
 		return guestService.getHotelGuests();
+	}
+	
+	@RequestMapping(path="/rooms", method=RequestMethod.GET)
+	public List<Room> getRooms() {
+		return roomService.getRooms();
 	}
 }
