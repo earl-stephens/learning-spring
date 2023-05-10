@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.learningspring.business.GuestService;
 import com.example.learningspring.business.ReservationService;
 import com.example.learningspring.business.RoomReservation;
+import com.example.learningspring.data.Guest;
 import com.example.learningspring.util.DateUtils;
 
 @RestController
@@ -18,10 +20,13 @@ public class WebserviceController {
 
 	private final DateUtils dateUtils;
 	private final ReservationService reservationService;
-	public WebserviceController(DateUtils dateUtils, ReservationService reservationService) {
+	private final GuestService guestService;
+	
+	public WebserviceController(DateUtils dateUtils, ReservationService reservationService, GuestService guestService) {
 		super();
 		this.dateUtils = dateUtils;
 		this.reservationService = reservationService;
+		this.guestService = guestService;
 	}
 	
 	@RequestMapping(path = "/reservations", method=RequestMethod.GET)
@@ -29,5 +34,10 @@ public class WebserviceController {
 		Date date = dateUtils.createDateFromDateString(dateString);
 		
 		return reservationService.getRoomReservationForDate(date);
+	}
+	
+	@RequestMapping(path="/guests", method=RequestMethod.GET)
+	public List<Guest> getGuests() {
+		return guestService.getHotelGuests();
 	}
 }
