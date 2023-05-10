@@ -105,13 +105,10 @@ public class Guest {
 		return "Guest [id=" + guestId + 
 				", firstName=" + firstName + 
 				", lastName=" + lastName + 
-				", emailAddress="
-				+ emailAddress + 
+				", emailAddress=" + emailAddress + 
 				", address=" + address + 
 				", country=" + country + 
 				", state=" + state + 
 				", phoneNumber=" + phoneNumber + "]";
 	}
-	
-	
 }
