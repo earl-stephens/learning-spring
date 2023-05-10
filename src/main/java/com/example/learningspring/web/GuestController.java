@@ -1,5 +1,7 @@
 package com.example.learningspring.web;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,9 +23,8 @@ public class GuestController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public String getGuests(Model model) {
-		Iterable<Guest> guests = guestService.findAllGuests();
-		model.addAttribute("guests", guests);
+		model.addAttribute("guests", guestService.getHotelGuests());
 		
-		return "guests";
+		return "hotel-guests";
 	}
 }
