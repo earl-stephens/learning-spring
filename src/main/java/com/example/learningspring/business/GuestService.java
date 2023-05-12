@@ -35,4 +35,10 @@ public class GuestService {
 		});
 		return guestList;
 	}
+	
+	public void addGuest(Guest guest) {
+
+		guestRepository.save(guest);
+	}
 }
+
